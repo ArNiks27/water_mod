@@ -1,0 +1,20 @@
+{
+  "item.water_mod.waterskin": "Waterskin",
+  "item.water_mod.cloth": "Cloth",
+  "item.water_mod.dry_cactus": "Dry cactus",
+  "item.water_mod.water_tower": "Manual Water Pump",
+  "block.water_mod.water_tower": "Manual Water Pump",
+  "block.water_mod.waterskin": "Waterskin",
+  "itemGroup.water_mod": "Water Mod",
+  "tooltip.water_mod.waterskin.empty": "Empty",
+  "tooltip.water_mod.waterskin.fresh": "Fresh water: %s/3",
+  "tooltip.water_mod.waterskin.salt": "Salt water: %s/3",
+  "message.water_mod.waterskin.mixed": "You can't mix fresh and salt water",
+  "death.attack.dehydration": "%1$s died of thirst",
+  "death.attack.dehydration.player": "%1$s died of thirst whilst fighting %2$s",
+  "block.water_mod.desalinator": "Dew desalinator",
+  "block.water_mod.desalinator_vip": "Desalinator 2",
+  "item.water_mod.desalinator_vip": "Desalinator 2",
+  "block.water_mod.wet_sand": "Wet Sand",
+  "item.water_mod.wet_sand": "Wet Sand"
+}

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "level=0,salty=false": {
+      "model": "water_mod:block/waterskin_empty"
+    },
+    "level=1,salty=false": {
+      "model": "water_mod:block/waterskin_fresh_1"
+    },
+    "level=2,salty=false": {
+      "model": "water_mod:block/waterskin_fresh_2"
+    },
+    "level=3,salty=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=0,salty=true": {
+      "model": "water_mod:block/waterskin_empty"
+    },
+    "level=1,salty=true": {
+      "model": "water_mod:block/waterskin_salt_1"
+    },
+    "level=2,salty=true": {
+      "model": "water_mod:block/waterskin_salt_2"
+    },
+    "level=3,salty=true": {
+      "model": "water_mod:block/waterskin_salt_3"
+    }
+  }
+}

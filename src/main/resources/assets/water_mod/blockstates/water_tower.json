@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "mode=idle": { "model": "water_mod:block/water_tower" },
+    "mode=fresh": { "model": "water_mod:block/water_tower" },
+    "mode=salt": { "model": "water_mod:block/water_tower" },
+    "mode=spent": { "model": "water_mod:block/water_tower" }
+  }
+}

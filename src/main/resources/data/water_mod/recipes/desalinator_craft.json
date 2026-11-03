@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "s#s",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "water_mod:cloth"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "water_mod:desalinator",
+    "count": 1
+  }
+}

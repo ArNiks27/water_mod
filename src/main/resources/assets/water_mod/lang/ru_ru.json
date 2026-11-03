@@ -1,0 +1,20 @@
+{
+  "item.water_mod.waterskin": "Бурдюк",
+  "item.water_mod.cloth": "Ткань",
+  "item.water_mod.dry_cactus": "Сухой кактус",
+  "item.water_mod.water_tower": "Ручная водяная качалка",
+  "block.water_mod.water_tower": "Ручная водяная качалка",
+  "block.water_mod.waterskin": "Бурдюк",
+  "itemGroup.water_mod": "water_mod",
+  "tooltip.water_mod.waterskin.empty": "Пустой",
+  "tooltip.water_mod.waterskin.fresh": "Пресная вода: %s/3",
+  "tooltip.water_mod.waterskin.salt": "Солёная вода: %s/3",
+  "message.water_mod.waterskin.mixed": "Нельзя смешивать пресную и солёную воду",
+  "death.attack.dehydration": "%1$s умер от жажды",
+  "death.attack.dehydration.player": "%1$s умер от жажды, сражаясь с %2$s",
+  "block.water_mod.desalinator": "Опреснитель",
+  "block.water_mod.desalinator_vip": "Улучшенный опреснитель ",
+  "item.water_mod.desalinator_vip": "Улучшенный опреснитель",
+  "block.water_mod.wet_sand": "Мокрый песок",
+  "item.water_mod.wet_sand": "Мокрый песок"
+}

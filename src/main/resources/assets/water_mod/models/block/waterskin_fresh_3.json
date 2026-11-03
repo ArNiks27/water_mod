@@ -1,0 +1,8 @@
+{
+  "parent": "water_mod:block/waterskin_geo_3",
+  "textures": {
+    "0": "water_mod:block/waterskin_fresh",
+    "particle": "water_mod:block/waterskin_fresh"
+  },
+  "render_type": "cutout"
+}

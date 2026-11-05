@@ -2,6 +2,7 @@ package com.arniks.water_mod;
 
 import com.arniks.water_mod.block.desalinator.DesalinatorBlockEntity;
 import com.arniks.water_mod.block.desalinator2.Desalinator2BlockEntity;
+import com.arniks.water_mod.block.cactuscampfire.CactusCampfireBlockEntity;
 import com.arniks.water_mod.block.watertower.WaterTowerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,4 +22,7 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<WaterTowerBlockEntity>> WATER_TOWER =
             BLOCK_ENTITIES.register("water_tower", () ->
                     BlockEntityType.Builder.of(WaterTowerBlockEntity::new, ModBlocks.WATER_TOWER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<CactusCampfireBlockEntity>> CACTUS_CAMPFIRE =
+            BLOCK_ENTITIES.register("cactus_campfire", () ->
+                    BlockEntityType.Builder.of(CactusCampfireBlockEntity::new, ModBlocks.CACTUS_CAMPFIRE.get()).build(null));
 }

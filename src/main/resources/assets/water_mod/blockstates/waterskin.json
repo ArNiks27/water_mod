@@ -1,28 +1,136 @@
 {
   "variants": {
-    "level=0,salty=false": {
+    "level=0,salty=false,improved=false": {
       "model": "water_mod:block/waterskin_empty"
     },
-    "level=1,salty=false": {
+    "level=0,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_empty"
+    },
+    "level=1,salty=false,improved=false": {
       "model": "water_mod:block/waterskin_fresh_1"
     },
-    "level=2,salty=false": {
-      "model": "water_mod:block/waterskin_fresh_2"
-    },
-    "level=3,salty=false": {
-      "model": "water_mod:block/waterskin_fresh_3"
-    },
-    "level=0,salty=true": {
-      "model": "water_mod:block/waterskin_empty"
-    },
-    "level=1,salty=true": {
+    "level=1,salty=true,improved=false": {
       "model": "water_mod:block/waterskin_salt_1"
     },
-    "level=2,salty=true": {
+    "level=2,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_2"
+    },
+    "level=2,salty=true,improved=false": {
       "model": "water_mod:block/waterskin_salt_2"
     },
-    "level=3,salty=true": {
+    "level=3,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=3,salty=true,improved=false": {
       "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=4,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=4,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=5,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=5,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=6,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=6,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=7,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=7,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=8,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=8,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=9,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=9,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=10,salty=false,improved=false": {
+      "model": "water_mod:block/waterskin_fresh_3"
+    },
+    "level=10,salty=true,improved=false": {
+      "model": "water_mod:block/waterskin_salt_3"
+    },
+    "level=0,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_empty"
+    },
+    "level=0,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_empty"
+    },
+    "level=1,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_1"
+    },
+    "level=1,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_1"
+    },
+    "level=2,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_1"
+    },
+    "level=2,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_1"
+    },
+    "level=3,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_1"
+    },
+    "level=3,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_1"
+    },
+    "level=4,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_2"
+    },
+    "level=4,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_2"
+    },
+    "level=5,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_2"
+    },
+    "level=5,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_2"
+    },
+    "level=6,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_2"
+    },
+    "level=6,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_2"
+    },
+    "level=7,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_2"
+    },
+    "level=7,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_2"
+    },
+    "level=8,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_3"
+    },
+    "level=8,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_3"
+    },
+    "level=9,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_3"
+    },
+    "level=9,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_3"
+    },
+    "level=10,salty=false,improved=true": {
+      "model": "water_mod:block/waterskin_improved_fresh_3"
+    },
+    "level=10,salty=true,improved=true": {
+      "model": "water_mod:block/waterskin_improved_salt_3"
     }
   }
 }

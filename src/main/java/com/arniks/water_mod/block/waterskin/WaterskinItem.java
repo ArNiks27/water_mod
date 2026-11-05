@@ -6,7 +6,9 @@ import com.arniks.water_mod.block.wetsand.WetSandWaterBlock;
 import com.arniks.water_mod.thirst.PlayerThirst;
 import com.arniks.water_mod.thirst.ThirstCapability;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -40,13 +42,25 @@ public class WaterskinItem extends BlockItem {
 
 
     public static ItemStack create(int level, boolean salty) {
-        ItemStack s = new ItemStack(ModItems.WATERSKIN.get());
+        return create(ModItems.WATERSKIN.get(), level, salty);
+    }
+
+    public static ItemStack create(Item item, int level, boolean salty) {
+        ItemStack s = new ItemStack(item);
         setContent(s, level, salty);
         return s;
     }
 
+    public static boolean isImproved(ItemStack stack) {
+        return stack.getItem() instanceof ImprovedWaterskinItem;
+    }
+
+    public static int getCapacity(ItemStack stack) {
+        return isImproved(stack) ? WaterskinBlock.IMPROVED_MAX_LEVEL : WaterskinBlock.MAX_LEVEL;
+    }
+
     public static int getLevel(ItemStack stack) {
-        return stack.hasTag() ? Math.max(0, Math.min(WaterskinBlock.MAX_LEVEL, stack.getTag().getInt(TAG_LEVEL))) : 0;
+        return stack.hasTag() ? Math.max(0, Math.min(getCapacity(stack), stack.getTag().getInt(TAG_LEVEL))) : 0;
     }
 
     public static boolean isSalty(ItemStack s) {
@@ -54,7 +68,7 @@ public class WaterskinItem extends BlockItem {
     }
 
     public static void setContent(ItemStack stack, int level, boolean salty) {
-        int l = Math.max(0, Math.min(WaterskinBlock.MAX_LEVEL, level));
+        int l = Math.max(0, Math.min(getCapacity(stack), level));
         if (l == 0) {
             if (stack.hasTag()) { stack.getTag().remove(TAG_LEVEL); stack.getTag().remove(TAG_SALTY); if (stack.getTag().isEmpty()) stack.setTag(null); }
             return;
@@ -67,14 +81,38 @@ public class WaterskinItem extends BlockItem {
     public InteractionResult useOn(UseOnContext ctx) {
         Player player = ctx.getPlayer();
         if (player != null && player.isSecondaryUseActive()) return super.useOn(ctx);
-        return InteractionResult.PASS;
+        ItemStack stack = ctx.getItemInHand();
+        Level level = ctx.getLevel();
+        BlockPos pos = ctx.getClickedPos();
+        if (getLevel(stack) <= 0 || !level.getBlockState(pos).is(Blocks.DIRT)) return InteractionResult.PASS;
+        if (player != null && !player.mayInteract(level, pos)) return InteractionResult.FAIL;
+
+        if (!level.isClientSide) {
+            if (level instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(ParticleTypes.SPLASH, pos.getX() + 0.5, pos.getY() + 1.0,
+                        pos.getZ() + 0.5, 12, 0.25, 0.1, 0.25, 0.05);
+            }
+            if (level.random.nextFloat() < 0.05F) {
+                level.setBlock(pos, Blocks.MOSS_BLOCK.defaultBlockState(), Block.UPDATE_ALL);
+                level.playSound(null, pos, SoundEvents.AZALEA_PLACE, SoundSource.BLOCKS, 0.7F, 1.1F);
+                if (level instanceof  ServerLevel serverLevel) {
+                serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, pos.getX() + 0.5, pos.getY() + 1.0,
+                        pos.getZ() + 0.5, 12, 0.25, 0.1, 0.25, 0.05);
+                }
+            }
+            if (player == null || !player.getAbilities().instabuild) {
+                setContent(stack, getLevel(stack) - 1, isSalty(stack));
+            }
+            level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 0.7F, 1.1F);
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
-        if (Config.FILL_FROM_WATER.get() && getLevel(stack) < WaterskinBlock.MAX_LEVEL) {
+        if (Config.FILL_FROM_WATER.get() && getLevel(stack) < getCapacity(stack)) {
             BlockHitResult hit = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
             if (hit.getType() == HitResult.Type.BLOCK) {
                 BlockPos pos = hit.getBlockPos();
@@ -86,7 +124,7 @@ public class WaterskinItem extends BlockItem {
                         return InteractionResultHolder.fail(stack);
                     }
                     if (!level.isClientSide) {
-                        setContent(stack, cur + 3, salty);
+                        setContent(stack, getCapacity(stack), salty);
                         if (level.getBlockState(pos).getBlock() instanceof WetSandWaterBlock) {
                             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
                         }
@@ -132,7 +170,9 @@ public class WaterskinItem extends BlockItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tip, TooltipFlag flag) {
         int l = getLevel(stack);
-        if (l == 0) tip.add(Component.translatable("tooltip.water_mod.waterskin.empty"));
-        else tip.add(Component.translatable(isSalty(stack) ? "tooltip.water_mod.waterskin.salt" : "tooltip.water_mod.waterskin.fresh", l));
+        String kind = isImproved(stack) ? "waterskin_improved" : "waterskin";
+        if (l == 0) tip.add(Component.translatable("tooltip.water_mod." + kind + ".empty"));
+        else tip.add(Component.translatable("tooltip.water_mod." + kind + (isSalty(stack) ? ".salt" : ".fresh"),
+                l, getCapacity(stack)));
     }
 }

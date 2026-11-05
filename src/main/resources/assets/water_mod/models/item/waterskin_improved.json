@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "water_mod:item/waterskin_improved_empty"
+  },
+  "overrides": [
+    {
+      "predicate": { "water_mod:content": 1.0 },
+      "model": "water_mod:item/waterskin_improved_fresh"
+    },
+    {
+      "predicate": { "water_mod:content": 2.0 },
+      "model": "water_mod:item/waterskin_improved_salt"
+    }
+  ]
+}

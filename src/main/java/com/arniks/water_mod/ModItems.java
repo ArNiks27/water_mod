@@ -4,6 +4,7 @@ import com.arniks.water_mod.item.ClothItem;
 import com.arniks.water_mod.item.Desalinator2Item;
 import com.arniks.water_mod.item.DryCactusItem;
 import com.arniks.water_mod.item.displayDesalinatorItem;
+import com.arniks.water_mod.block.waterskin.ImprovedWaterskinItem;
 import com.arniks.water_mod.item.WaterTowerItem;
 import com.arniks.water_mod.block.waterskin.WaterskinItem;
 import net.minecraft.world.item.BlockItem;
@@ -16,6 +17,8 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Water_mod.MODID);
     public static final RegistryObject<Item> WATERSKIN = ITEMS.register("waterskin",
             () -> new WaterskinItem(ModBlocks.WATERSKIN.get(), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> WATERSKIN_IMPROVED = ITEMS.register("waterskin_improved",
+            () -> new ImprovedWaterskinItem(ModBlocks.WATERSKIN.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DESALINATOR = ITEMS.register("desalinator",
             () -> new displayDesalinatorItem(ModBlocks.DESALINATOR.get(), new Item.Properties()));
     public static final RegistryObject<Item> DESALINATOR_VIP = ITEMS.register("desalinator_vip",
@@ -28,4 +31,8 @@ public class ModItems {
             () -> new WaterTowerItem(ModBlocks.WATER_TOWER.get(), new Item.Properties()));
     public static final RegistryObject<Item> WET_SAND = ITEMS.register("wet_sand",
             () -> new BlockItem(ModBlocks.WET_SAND.get(), new Item.Properties()));
+    public static final RegistryObject<Item> HOT_SAND = ITEMS.register("hot_sand",
+            () -> new BlockItem(ModBlocks.HOT_SAND.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CACTUS_CAMPFIRE = ITEMS.register("cactus_campfire",
+            () -> new BlockItem(ModBlocks.CACTUS_CAMPFIRE.get(), new Item.Properties()));
 }

@@ -1,5 +1,6 @@
 package com.arniks.water_mod.block.waterskin;
 
+import com.arniks.water_mod.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -26,8 +27,10 @@ import java.util.List;
 
 public class WaterskinBlock extends Block {
     public static final int MAX_LEVEL = 3;
-    public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, MAX_LEVEL);
+    public static final int IMPROVED_MAX_LEVEL = 10;
+    public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, IMPROVED_MAX_LEVEL);
     public static final BooleanProperty SALTY = BooleanProperty.create("salty");
+    public static final BooleanProperty IMPROVED = BooleanProperty.create("improved");
 
     private static final VoxelShape SHAPE = Shapes.or(
             Block.box(3, 0, 3, 13, 5, 13),
@@ -36,17 +39,11 @@ public class WaterskinBlock extends Block {
     public WaterskinBlock() {
         super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.5f)
                 .sound(SoundType.WOOL).noOcclusion());
-        registerDefaultState(stateDefinition.any().setValue(LEVEL, 0).setValue(SALTY, false));
+        registerDefaultState(stateDefinition.any().setValue(LEVEL, 0).setValue(SALTY, false).setValue(IMPROVED, false));
     }
     public static BlockState withContent(BlockState state, int level, boolean salty) {
-        int l = Math.max(0, Math.min(MAX_LEVEL, level));
+        int l = Math.max(0, Math.min(getCapacity(state), level));
         return state.setValue(LEVEL, l).setValue(SALTY, l > 0 && salty);
-    }
-
-    // в инверторе левел бурдюку
-    public static void setContent(Level world, BlockPos pos, int level, boolean salty) {
-        BlockState s = world.getBlockState(pos);
-        if (s.getBlock() instanceof WaterskinBlock) world.setBlock(pos, withContent(s, level, salty), Block.UPDATE_ALL);
     }
 
     // добавить левел к бурдюку +1
@@ -54,28 +51,39 @@ public class WaterskinBlock extends Block {
         BlockState s = world.getBlockState(pos);
         if (!(s.getBlock() instanceof WaterskinBlock)) return 0;
         int old = s.getValue(LEVEL);
-        int now = Math.max(0, Math.min(MAX_LEVEL, old + amount));
+        int now = Math.max(0, Math.min(getCapacity(s), old + amount));
         boolean type = old == 0 ? salty : s.getValue(SALTY);
         world.setBlock(pos, withContent(s, now, type), Block.UPDATE_ALL);
         return now - old;
     }
 
-    public static int getLevel(BlockState s) { return s.getValue(LEVEL); }
-    public static boolean isSalty(BlockState s) { return s.getValue(SALTY); }
+    public static int getLevel(BlockState s) {
+        return s.getValue(LEVEL);
+    }
+    public static boolean isSalty(BlockState s) {
+        return s.getValue(SALTY);
+    }
+    public static int getCapacity(BlockState s) {
+        return s.getValue(IMPROVED) ? IMPROVED_MAX_LEVEL : MAX_LEVEL;
+    }
 
     private static ItemStack stackOf(BlockState s) {
-        return WaterskinItem.create(s.getValue(LEVEL), s.getValue(SALTY));
+        return WaterskinItem.create(s.getValue(IMPROVED)
+                        ? ModItems.WATERSKIN_IMPROVED.get()
+                        : ModItems.WATERSKIN.get(),
+                s.getValue(LEVEL), s.getValue(SALTY));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(LEVEL, SALTY);
+        builder.add(LEVEL, SALTY, IMPROVED);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         ItemStack stack = ctx.getItemInHand();
-        return withContent(defaultBlockState(), WaterskinItem.getLevel(stack), WaterskinItem.isSalty(stack));
+        return withContent(defaultBlockState().setValue(IMPROVED, WaterskinItem.isImproved(stack)),
+                WaterskinItem.getLevel(stack), WaterskinItem.isSalty(stack));
     }
 
     @Override

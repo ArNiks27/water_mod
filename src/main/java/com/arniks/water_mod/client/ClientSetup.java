@@ -3,6 +3,7 @@ package com.arniks.water_mod.client;
 import com.arniks.water_mod.ModBlockEntities;
 import com.arniks.water_mod.ModItems;
 import com.arniks.water_mod.Water_mod;
+import com.arniks.water_mod.client.CactusCampfireRenderer;
 import com.arniks.water_mod.block.waterskin.WaterskinItem;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -19,12 +20,18 @@ public class ClientSetup {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() ->
-                ItemProperties.register(ModItems.WATERSKIN.get(), new ResourceLocation(Water_mod.MODID, "content"),
-                        (stack, level, entity, seed) -> {
-                            if (WaterskinItem.getLevel(stack) <= 0) return 0f;
-                            return WaterskinItem.isSalty(stack) ? 2f : 1f;
-                        }));
+        event.enqueueWork(() -> {
+            ResourceLocation content = new ResourceLocation(Water_mod.MODID, "content");
+            ItemProperties.register(ModItems.WATERSKIN.get(), content,
+                    (stack, level, entity, seed) -> itemContentPredicate(stack));
+            ItemProperties.register(ModItems.WATERSKIN_IMPROVED.get(), content,
+                    (stack, level, entity, seed) -> itemContentPredicate(stack));
+        });
+    }
+
+    private static float itemContentPredicate(net.minecraft.world.item.ItemStack stack) {
+        if (WaterskinItem.getLevel(stack) <= 0) return 0f;
+        return WaterskinItem.isSalty(stack) ? 2f : 1f;
     }
 
     @SubscribeEvent
@@ -32,6 +39,7 @@ public class ClientSetup {
         event.registerBlockEntityRenderer(ModBlockEntities.DESALINATOR.get(), ctx -> new DesalinatorRenderer());
         event.registerBlockEntityRenderer(ModBlockEntities.DESALINATOR_VIP.get(), ctx -> new Desalinator2Renderer());
         event.registerBlockEntityRenderer(ModBlockEntities.WATER_TOWER.get(), ctx -> new WaterTowerRenderer());
+        event.registerBlockEntityRenderer(ModBlockEntities.CACTUS_CAMPFIRE.get(), ctx -> new CactusCampfireRenderer());
     }
 
     @SubscribeEvent

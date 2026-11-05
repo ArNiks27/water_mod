@@ -2,6 +2,7 @@ package com.arniks.water_mod;
 
 import com.arniks.water_mod.network.ModNetwork;
 import com.arniks.water_mod.block.waterskin.WaterskinItem;
+import com.arniks.water_mod.block.waterskin.WaterskinBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.network.chat.Component;
@@ -26,14 +27,19 @@ public class Water_mod {
                     .icon(() -> WaterskinItem.create(3, false))
                     .displayItems((params, output) -> {
                         output.accept(WaterskinItem.create(0, false));
+                        output.accept(WaterskinItem.create(ModItems.WATERSKIN_IMPROVED.get(), 0, false));
                         output.accept(ModBlocks.DESALINATOR.get());
                         output.accept(ModItems.DESALINATOR_VIP.get());
                         output.accept(ModItems.WATER_TOWER.get());
                         output.accept(ModItems.CLOTH_ITEM.get());
                         output.accept(ModItems.DRY_CACTUS.get());
                         output.accept(ModItems.WET_SAND.get());
+                        output.accept(ModItems.HOT_SAND.get());
+                        output.accept(ModItems.CACTUS_CAMPFIRE.get());
                         for (int i = 1; i <= 3; i++) output.accept(WaterskinItem.create(i, false));
                         for (int i = 1; i <= 3; i++) output.accept(WaterskinItem.create(i, true));
+                        output.accept(WaterskinItem.create(ModItems.WATERSKIN_IMPROVED.get(), WaterskinBlock.IMPROVED_MAX_LEVEL, false));
+                        output.accept(WaterskinItem.create(ModItems.WATERSKIN_IMPROVED.get(), WaterskinBlock.IMPROVED_MAX_LEVEL, true));
                     })
                     .build());
 

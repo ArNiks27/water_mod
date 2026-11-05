@@ -118,15 +118,16 @@ public class WaterTowerBlockEntity extends BlockEntity implements GeoBlockEntity
         BlockState skin = level.getBlockState(skinPos);
         if (!(skin.getBlock() instanceof WaterskinBlock)) return;
         int oldLevel = WaterskinBlock.getLevel(skin);
-        if (oldLevel >= WaterskinBlock.MAX_LEVEL || (oldLevel > 0 && !WaterskinBlock.isSalty(skin))) return;
-        WaterskinBlock.addLevel(level, skinPos, WaterskinBlock.MAX_LEVEL - oldLevel, true);
+        int capacity = WaterskinBlock.getCapacity(skin);
+        if (oldLevel >= capacity || (oldLevel > 0 && !WaterskinBlock.isSalty(skin))) return;
+        WaterskinBlock.addLevel(level, skinPos, capacity - oldLevel, true);
     }
 
     private void fillFreshWaterskin(Level level) {
         BlockPos skinPos = worldPosition.offset(0, 0, -1);
         BlockState skin = level.getBlockState(skinPos);
         if (!(skin.getBlock() instanceof WaterskinBlock)) return;
-        if (WaterskinBlock.getLevel(skin) >= WaterskinBlock.MAX_LEVEL || WaterskinBlock.isSalty(skin)) return;
+        if (WaterskinBlock.getLevel(skin) >= WaterskinBlock.getCapacity(skin) || WaterskinBlock.isSalty(skin)) return;
         WaterskinBlock.addLevel(level, skinPos, 1, false);
     }
 

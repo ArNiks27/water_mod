@@ -17,7 +17,6 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class DesalinatorBlockEntity extends BlockEntity implements GeoBlockEntity {
-
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private long lastDay = -1;
     private long fillAt = -1;
@@ -34,7 +33,10 @@ public class DesalinatorBlockEntity extends BlockEntity implements GeoBlockEntit
             else {
                 if (time >= be.fillAt) {
                     be.fillAt = -1;
-                    if (be.canFill(level, pos)) WaterskinBlock.addLevel(level, pos.below(), 1, false);
+                    if (be.canFill(level, pos)) {
+                        BlockPos waterskinPos = pos.below();
+                        WaterskinBlock.addLevel(level, waterskinPos, 1, false);
+                    }
                     be.setChanged();
                 }
                 return;
@@ -56,7 +58,7 @@ public class DesalinatorBlockEntity extends BlockEntity implements GeoBlockEntit
     private boolean canFill(Level level, BlockPos pos) {
         BlockState s = level.getBlockState(pos.below());
         return s.getBlock() instanceof WaterskinBlock
-                && WaterskinBlock.getLevel(s) < WaterskinBlock.MAX_LEVEL
+                && WaterskinBlock.getLevel(s) < WaterskinBlock.getCapacity(s)
                 && !WaterskinBlock.isSalty(s)
                 && level.canSeeSky(pos.above());
     }

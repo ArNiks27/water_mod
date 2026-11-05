@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "heating=false,has_fire=false": { "model": "water_mod:block/hot_sand" },
+    "heating=false,has_fire=true": { "model": "water_mod:block/hot_sand" },
+    "heating=true,has_fire=false": { "model": "minecraft:block/sand" },
+    "heating=true,has_fire=true": { "model": "minecraft:block/sand" }
+  }
+}

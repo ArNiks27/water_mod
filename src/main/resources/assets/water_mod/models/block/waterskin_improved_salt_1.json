@@ -1,0 +1,8 @@
+{
+  "parent": "water_mod:block/waterskin_geo_1",
+  "textures": {
+    "0": "water_mod:block/waterskin_improved_salt",
+    "particle": "water_mod:block/waterskin_improved_salt"
+  },
+  "render_type": "cutout"
+}

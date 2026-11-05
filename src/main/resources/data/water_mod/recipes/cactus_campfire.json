@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "SCS",
+    "DDD"
+  ],
+  "key": {
+    "S": { "item": "minecraft:stick" },
+    "C": { "tag": "minecraft:coals" },
+    "D": { "item": "water_mod:dry_cactus" }
+  },
+  "result": { "item": "water_mod:cactus_campfire" }
+}

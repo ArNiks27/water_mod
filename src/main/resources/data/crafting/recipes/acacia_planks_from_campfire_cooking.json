@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "experience": 0,
+  "cookingtime": 400,
+  "ingredient": {
+    "item": "minecraft:cactus"
+  },
+  "result": "water_mod:dry_cactus"
+}

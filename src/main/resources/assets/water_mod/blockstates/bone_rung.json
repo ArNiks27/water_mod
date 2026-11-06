@@ -1,6 +1,8 @@
 {
   "variants": {
-    "diagonal=false": { "model": "water_mod:block/bone_rung" },
-    "diagonal=true": { "model": "water_mod:block/bone_rung", "y": 90 }
+    "facing=north": { "model": "water_mod:block/bone_rung_north", "y": 180 },
+    "facing=east": { "model": "water_mod:block/bone_rung_east", "y": 90 },
+    "facing=south": { "model": "water_mod:block/bone_rung_south", "y": 0 },
+    "facing=west": { "model": "water_mod:block/bone_rung_west", "y": 270 }
   }
 }

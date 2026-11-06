@@ -37,10 +37,10 @@ public class BoneRungPlacementEvents {
             if (!level.getBlockState(secondSupport).isFaceSturdy(level, secondSupport,
                     secondSupportDirection.getOpposite())) continue;
 
-            boolean positiveDiagonal = supportTowardClicked.getStepX() * secondSupportDirection.getStepZ()
-                    + supportTowardClicked.getStepZ() * secondSupportDirection.getStepX() < 0;
+            Direction facing = BoneRungBlock.facingForCorner(supportTowardClicked, secondSupportDirection);
+            if (facing == null) continue;
             BlockState rung = ModBlocks.BONE_RUNG.get().defaultBlockState()
-                    .setValue(BoneRungBlock.DIAGONAL, positiveDiagonal);
+                    .setValue(BoneRungBlock.FACING, facing);
             if (!rung.canSurvive(level, target)) continue;
 
             event.setCanceled(true);

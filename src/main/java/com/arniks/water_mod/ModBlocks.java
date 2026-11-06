@@ -8,6 +8,8 @@ import com.arniks.water_mod.block.waterskin.WaterskinBlock;
 import com.arniks.water_mod.block.watertower.WaterTowerBlock;
 import com.arniks.water_mod.block.wetsand.WetSandBlock;
 import com.arniks.water_mod.block.wetsand.WetSandWaterBlock;
+import com.arniks.water_mod.block.bonesand.BoneSandBlock;
+import com.arniks.water_mod.block.bonerung.BoneRungBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,4 +25,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> WET_SAND_WATER = BLOCKS.register("wet_sand_water", WetSandWaterBlock::new);
     public static final RegistryObject<Block> HOT_SAND = BLOCKS.register("hot_sand", HotSandBlock::new);
     public static final RegistryObject<Block> CACTUS_CAMPFIRE = BLOCKS.register("cactus_campfire", CactusCampfireBlock::new);
+    public static final RegistryObject<Block> BONE_SAND = BLOCKS.register("bone_sand", BoneSandBlock::new);
+    public static final RegistryObject<Block> BONE_RUNG = BLOCKS.register("bone_rung", BoneRungBlock::new);
 }

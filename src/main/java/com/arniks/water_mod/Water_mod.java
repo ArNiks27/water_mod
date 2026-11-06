@@ -36,6 +36,7 @@ public class Water_mod {
                         output.accept(ModItems.WET_SAND.get());
                         output.accept(ModItems.HOT_SAND.get());
                         output.accept(ModItems.CACTUS_CAMPFIRE.get());
+                        output.accept(ModItems.BONE_SAND.get());
                         for (int i = 1; i <= 3; i++) output.accept(WaterskinItem.create(i, false));
                         for (int i = 1; i <= 3; i++) output.accept(WaterskinItem.create(i, true));
                         output.accept(WaterskinItem.create(ModItems.WATERSKIN_IMPROVED.get(), WaterskinBlock.IMPROVED_MAX_LEVEL, false));

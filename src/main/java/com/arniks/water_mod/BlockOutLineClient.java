@@ -24,6 +24,7 @@ public class BlockOutLineClient {
         ENABLED.add(BuiltInRegistries.BLOCK.getKey(ModBlocks.DESALINATOR.get()));
         ENABLED.add(BuiltInRegistries.BLOCK.getKey(ModBlocks.DESALINATOR_VIP.get()));
         ENABLED.add(BuiltInRegistries.BLOCK.getKey(ModBlocks.WATER_TOWER.get()));
+        ENABLED.add(BuiltInRegistries.BLOCK.getKey(ModBlocks.BONE_RUNG.get()));
     }
     public static boolean isOutlined(Block block) {
         ResourceLocation key = BuiltInRegistries.BLOCK.getKey(block);

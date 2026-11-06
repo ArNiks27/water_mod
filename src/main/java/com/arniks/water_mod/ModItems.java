@@ -35,4 +35,6 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.HOT_SAND.get(), new Item.Properties()));
     public static final RegistryObject<Item> CACTUS_CAMPFIRE = ITEMS.register("cactus_campfire",
             () -> new BlockItem(ModBlocks.CACTUS_CAMPFIRE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> BONE_SAND = ITEMS.register("bone_sand",
+            () -> new BlockItem(ModBlocks.BONE_SAND.get(), new Item.Properties()));
 }

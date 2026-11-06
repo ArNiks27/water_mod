@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "diagonal=false": { "model": "water_mod:block/bone_rung" },
+    "diagonal=true": { "model": "water_mod:block/bone_rung", "y": 90 }
+  }
+}

@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Water_mod.MODID)
 public final class SandBlockEvents {
     private static final String SAND_COMMAND =
-            "summon item ~ ~ ~ {Item:{id:\"minecraft:diamond\",Count:1b}}";
+            "summon item ~ ~ ~ {Item:{id:\"blocklayering:layer_sand\",Count:1b}}";
 
     private SandBlockEvents() { }
 

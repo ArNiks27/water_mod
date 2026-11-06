@@ -1,11 +1,14 @@
 package com.arniks.water_mod.client;
 
 import com.arniks.water_mod.ModBlockEntities;
+import com.arniks.water_mod.ModBlocks;
 import com.arniks.water_mod.ModItems;
 import com.arniks.water_mod.Water_mod;
 import com.arniks.water_mod.client.CactusCampfireRenderer;
 import com.arniks.water_mod.block.waterskin.WaterskinItem;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -21,6 +24,7 @@ public class ClientSetup {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.BONE_RUNG.get(), RenderType.cutout());
             ResourceLocation content = new ResourceLocation(Water_mod.MODID, "content");
             ItemProperties.register(ModItems.WATERSKIN.get(), content,
                     (stack, level, entity, seed) -> itemContentPredicate(stack));

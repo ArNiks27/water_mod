@@ -54,4 +54,8 @@ public class WaterTowerRenderer extends GeoBlockRenderer<WaterTowerBlockEntity> 
             return new ResourceLocation(Water_mod.MODID, "animations/" + animation);
         }
     }
+    @Override
+    public int getViewDistance() {
+        return 512;
+    }
 }

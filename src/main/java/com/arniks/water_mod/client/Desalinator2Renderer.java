@@ -30,4 +30,8 @@ public class Desalinator2Renderer extends GeoBlockRenderer<Desalinator2BlockEnti
             return new ResourceLocation(Water_mod.MODID, "animations/opresnitel_vip.animation.json");
         }
     }
+    @Override
+    public int getViewDistance() {
+        return 512;
+    }
 }

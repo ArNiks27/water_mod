@@ -14,4 +14,8 @@ public class DesalinatorRenderer extends GeoBlockRenderer<DesalinatorBlockEntity
         @Override public ResourceLocation getTextureResource(DesalinatorBlockEntity a) { return new ResourceLocation(Water_mod.MODID, "textures/block/opresnitel.png"); }
         @Override public ResourceLocation getAnimationResource(DesalinatorBlockEntity a) { return new ResourceLocation(Water_mod.MODID, "animations/opresnitel.animation.json"); }
     }
+    @Override
+    public int getViewDistance() {
+        return 512;
+    }
 }

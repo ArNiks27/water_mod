@@ -20,6 +20,7 @@ public class Desalinator2ItemRenderer extends GeoItemRenderer<Desalinator2Item> 
             @Override public ResourceLocation getAnimationResource(Desalinator2Item item) {
                 return new ResourceLocation(Water_mod.MODID, "animations/opresnitel_vip.animation.json");
             }
+
         });
     }
 
@@ -28,4 +29,5 @@ public class Desalinator2ItemRenderer extends GeoItemRenderer<Desalinator2Item> 
                                     MultiBufferSource bufferSource, float partialTick) {
         return RenderType.entityTranslucent(texture);
     }
+
 }

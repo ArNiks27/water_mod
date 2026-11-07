@@ -69,4 +69,8 @@ public class CactusCampfireRenderer extends GeoBlockRenderer<CactusCampfireBlock
             return new ResourceLocation(Water_mod.MODID, "animations/cactus_campfire.animation.json");
         }
     }
+    @Override
+    public int getViewDistance() {
+        return 512;
+    }
 }

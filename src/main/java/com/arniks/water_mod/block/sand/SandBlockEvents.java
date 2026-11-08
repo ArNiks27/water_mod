@@ -1,8 +1,15 @@
 package com.arniks.water_mod.block.sand;
 
+import com.arniks.water_mod.ModItems;
 import com.arniks.water_mod.Water_mod;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.level.BlockEvent;
@@ -18,14 +25,19 @@ public final class SandBlockEvents {
 
     @SubscribeEvent
     public static void onSandBreak(BlockEvent.BreakEvent event) {
-        if (!event.getState().is(Blocks.SAND)) return;
+        Player player = event.getPlayer();
+        if (!player.getItemInHand(InteractionHand.MAIN_HAND).is(ItemTags.SHOVELS)) {
+            if (!event.getState().is(Blocks.SAND)) return;
 
-        event.setCanceled(true);
-        if (event.getLevel() instanceof ServerLevel level) {
-            executeSandCommand(level, event.getPos());
+            event.setCanceled(true);
+            if (event.getLevel() instanceof ServerLevel level) {
+                executeSandCommand(level, event.getPos());
+            }
+        } else {
+            if (event.getLevel() instanceof ServerLevel level) {
+            Containers.dropItemStack(level, event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(Items.SAND));}
         }
     }
-
     private static void executeSandCommand(ServerLevel level, net.minecraft.core.BlockPos pos) {
         CommandSourceStack source = level.getServer().createCommandSourceStack()
                 .withLevel(level)

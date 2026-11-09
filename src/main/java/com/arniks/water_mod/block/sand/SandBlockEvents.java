@@ -34,9 +34,7 @@ public final class SandBlockEvents {
                 executeSandCommand(level, event.getPos());
             }
         } else {
-            if (event.getLevel() instanceof ServerLevel level) {
-            Containers.dropItemStack(level, event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(Items.SAND));}
-        }
+            return;}
     }
     private static void executeSandCommand(ServerLevel level, net.minecraft.core.BlockPos pos) {
         CommandSourceStack source = level.getServer().createCommandSourceStack()
